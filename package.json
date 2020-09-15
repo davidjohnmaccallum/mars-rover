@@ -1,0 +1,28 @@
+{
+  "name": "mars-rover",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "7.9.0",
+    "eslint-loader": "4.0.2",
+    "eslint-plugin-jest": "24.0.1",
+    "file-loader": "6.1.0",
+    "jest": "26.4.2",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {
+    "lodash": "4.17.20"
+  }
+}

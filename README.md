@@ -7,10 +7,10 @@
 1. Setup dev, build and test tooling. (DONE)
 1. Write tests for Zone and Rover. (DONE)
 1. Write Zone and Rover modules. (DONE)
-1. Get to know HTML Canvas API.
-1. Create zone grid.
-1. Create rover sprite.
-1. Move rover.
+1. Get to know HTML Canvas API. (DONE)
+1. Create zone grid. (DONE)
+1. Create rover sprite. (DONE)
+1. Move rover. (DONE)
 1. Rotate rover.
 1. Animate move.
 1. Animate rotate.

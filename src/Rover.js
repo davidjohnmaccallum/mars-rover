@@ -1,26 +1,26 @@
 /**
- *
+ * This module models the rover. The rover can move and turn and 
+ * is aware of its position.
+ * 
  * @param {Zone} _zone Zone within which rover will operate.
- * @param {number} _startGridX Starting X location of rover.
- * @param {number} _startGridY Starting Y location of rover.
- * @param {string} _startOrientation Starting orientation of rover.
+ * @param {number} _startColumn Starting X location of rover.
+ * @param {number} _startRow Starting Y location of rover.
+ * @param {string} _startOrientation Starting orientation of rover (N,S,E,W).
  */
 const Rover = (
   _zone,
-  _startGridX = 0,
-  _startGridY = 0,
+  _startColumn = 0,
+  _startRow = 0,
   _startOrientation = "E"
 ) => {
-  const _validOrientations = ["N", "S", "E", "W"];
-  if (!_validOrientations.includes(_startOrientation))
-    throw Error(`Invalid startOrientation: ${_startOrientation}`);
-
-  let _gridPositionX = _startGridX;
-  let _gridPositionY = _startGridY;
+  let _column = _startColumn;
+  let _row = _startRow;
   let _orientation = _startOrientation;
 
-  const getGridPositionX = () => _gridPositionX;
-  const getGridPositionY = () => _gridPositionY;
+  const getColumn = () => _column;
+  const getRow = () => _row;
+  const getOrientation = () => _orientation;
+  
   const rotateLeft = () => {
     switch (_orientation) {
       case "N":
@@ -37,6 +37,7 @@ const Rover = (
         break;
     }
   };
+
   const rotateRight = () => {
     switch (_orientation) {
       case "N":
@@ -53,34 +54,42 @@ const Rover = (
         break;
     }
   };
+
   const move = () => {
     switch (_orientation) {
       case "N":
-        if (_gridPositionY < _zone.getRows()) _gridPositionY++;
+        if (_row < _zone.getRows()) _row++;
         break;
       case "S":
-        if (_gridPositionY > 0) _gridPositionY--;
+        if (_row > 0) _row--;
         break;
       case "E":
-        if (_gridPositionX < _zone.getColumns()) _gridPositionX++;
+        if (_column < _zone.getColumns()) _column++;
         break;
       case "W":
-        if (_gridPositionX > 0) _gridPositionX--;
+        if (_column > 0) _column--;
         break;
     }
   };
 
   const drawRover = () => {
     const ctx = _zone.getCanvas().getContext("2d");
-    const img = document.getElementById("rover");
+    const imageOrientationMap = {
+      'N': "roverNorth",
+      'S': "roverSouth",
+      'E': "roverEast",
+      'W': "roverWest",
+    }
+    const img = document.getElementById(imageOrientationMap[_orientation]);
     const roverSize = Math.min(_zone.getRowWidth(), _zone.getColumnWidth());
-    const position = _zone.getPhysicalLocation(_gridPositionX, _gridPositionY);
+    const position = _zone.getPhysicalLocation(_column, _row);
     ctx.drawImage(img, position.x, position.y, roverSize, roverSize);
   };
 
   return {
-    getGridPositionX,
-    getGridPositionY,
+    getColumn,
+    getRow,
+    getOrientation,
     rotateLeft,
     rotateRight,
     move,

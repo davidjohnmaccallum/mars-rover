@@ -1,24 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Mars Rover</title>
     <style>
-      body {
-        background-color: orange;
+      html {
+        font-family: "courier";
+        color: white;
       }
-      #background {
-        display: inline-block;
-        height: "750px";
-        width: "750px";
-        background: url('mars.jpg') no-repeat;
+      body {
+        margin: 0;
+      }
+      div#container {
+        background-image: url("mars.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      div#controls {
+        display: flex;
+        flex-direction: column;
+      }
+      div#controlsRow1 {
+        display: flex;
+        justify-content: center;
+      }
+      div#controlsRow2 {
+        display: flex;
+        justify-content: center;
+      }
+      textArea#input {
+        margin-right: 1em;
+      }
+      button#button {
+        width: 5em;
+      }
+      span#feedback {
+        font-size: "15px";
+      }
+      div#description {
+        max-width: 800px;
       }
     </style>
   </head>
   <body>
-    <div id="background">
-      <canvas id="grid" height="600" width="600"></canvas>
+    <div id="container">
+      <h1>Mars Rover</h1>
+      <div id="controls">
+        <div id="controlsRow1">
+          <textarea id="input" rows="3"></textarea>
+          <button id="button">Go</button>
+        </div>
+        <div id="controlsRow2">
+          <span id="feedback">LIke so</span>
+        </div>
+      </div>
+      <canvas id="zone" height="600" width="600"></canvas>
+      <a id="repoLink" href="https://github.com/davidjohnmaccallum/mars-rover"
+        >https://github.com/davidjohnmaccallum/mars-rover</a
+      >
+      <div id="description">
+        <p>
+          Rovers have been sent to Mars to survey the terrain and you have been
+          charged with creating their navigation system. The specifications of
+          the challenge are listed below.
+        </p>
+        <ul>
+          <li>
+            Mars’s surface can be thought of as a zone that is itself a
+            two-dimensional grid of square areas.
+          </li>
+          <li>
+            The zones have been very carefully surveyed ahead of time and are
+            deemed safe for exploration within the landing terrain bounds, as
+            represented by a single cartesian coordinate - for example: (5, 5).
+          </li>
+          <li>
+            The rover understands the cardinal points and can face either East
+            (E), West (W), North (N) or South (S) at any given time.
+          </li>
+          <li>
+            The rover understands three commands:
+            <ul>
+              <li>M - Move one space forward in the direction it is facing</li>
+              <li>R - rotate 90 degrees to the right</li>
+              <li>L - rotate 90 degrees to the left</li>
+            </ul>
+          </li>
+          <li>
+            Due to the transmission delay in communicating with the rover on
+            Mars, you are only able to send the rover a single list of commands.
+          </li>
+          <li>
+            These commands will be executed by the rover and its resulting
+            location sent back to HQ. This is an example of the list of commands
+            sent to the rover:
+            <p>8 10</p>
+            <p>1 2 E</p>
+            <p>MMLMRMMRRMML</p>
+          </li>
+          <li>
+            This is how the rover will interpret the above commands:
+            <ul>
+              <li>
+                The first line describes how big the current zone is. This
+                zone’s boundary is at the Cartesian coordinate of 8,10 and the
+                zone comprises 80 blocks.
+              </li>
+              <li>
+                The second line describes the rover’s starting location and
+                orientation.
+              </li>
+              <li>
+                This rover would start at position 1 on the horizontal axis,
+                position 2 on the vertical axis and would be facing East (E).
+                The third line is the list of commands (movements and rotations)
+                to be executed by the rover.
+              </li>
+              <li>
+                As a result of following these commands, a rover starting at ​1
+                2 E​ in this zone would land up at ​3 3 S​.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        You are to design a program which takes a text in the format as
+        described above and then displays its resulting rover location to the
+        console. Be sure to include:
+        <ul>
+          <li>
+            A README with clear instructions on how to use your program. Also
+            include a brief description of the design decisions made in your
+            program as well as how you have ensured your code’s correctness.
+          </li>
+          <li>
+            The input to your program (as described above) as well as any
+            additional inputs.
+          </li>
+        </ul>
+      </div>
     </div>
-    <img id="rover" src="rover.svg" style="display:none"/>
+    <img id="roverNorth" src="roverNorth.png" style="display: none" />
+    <img id="roverSouth" src="roverSouth.png" style="display: none" />
+    <img id="roverEast" src="roverEast.png" style="display: none" />
+    <img id="roverWest" src="roverWest.png" style="display: none" />
     <script src="main.js"></script>
   </body>
 </html>

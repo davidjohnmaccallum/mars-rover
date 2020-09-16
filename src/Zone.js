@@ -1,10 +1,15 @@
 /**
  * Zone represents an area to be surveyed on the planet. It is a rectangular physical
  * space divided into a grid.
+ * 
+ * @param {object} _canvas HTML Canvas on which to draw the zone grid.
+ * @param {number} _columns Number of columns for the zone grid.
+ * @param {number} _rows Number of rows for the zone grid.
  */
-const Zone = (_canvas, _columns = 5, _rows = 5, _margin = 60) => {
+const Zone = (_canvas, _columns = 5, _rows = 5) => {
   if (!_canvas) throw new Error("Canvas param is required");
 
+  const _margin = 30
   const _gridWidth = _canvas.width - _margin * 2;
   const _gridHeight = _canvas.height - _margin * 2;
   const _columnWidth = _gridWidth / (_columns + 1);
@@ -14,8 +19,8 @@ const Zone = (_canvas, _columns = 5, _rows = 5, _margin = 60) => {
    * Makes sure a grid location is within the bounds of the zone grid. If the grid location
    * is out of bounds the nearest in bounds location will be returned.
    *
-   * @param {number} gridLocation A location on the X or Y axis of the grid.
-   * @param {number} gridMax The maximum location on the X or Y axis.
+   * @param {number} gridLocation Either a column or a row number.
+   * @param {number} gridMax The maximum number of rows or columns.
    */
   const _keepInBounds = (gridLocation, gridMax) =>
     Math.min(Math.max(0, gridLocation), gridMax);
@@ -26,6 +31,13 @@ const Zone = (_canvas, _columns = 5, _rows = 5, _margin = 60) => {
   const getColumnWidth = () => _columnWidth
   const getCanvas = () => _canvas
 
+  /**
+   * Returns the physical location in x, y pixels on the canvas represented by this
+   * set of grid coordinates.
+   * 
+   * @param {*} column 
+   * @param {*} row 
+   */
   const getPhysicalLocation = (column, row) => {
     const safeColumn = _keepInBounds(column, _columns);
     const safeRow = _keepInBounds(row, _rows);
@@ -38,6 +50,9 @@ const Zone = (_canvas, _columns = 5, _rows = 5, _margin = 60) => {
   const drawGrid = () => {
     const ctx = _canvas.getContext("2d");
     ctx.clearRect(0, 0, _canvas.width, _canvas.height)
+
+    ctx.strokeStyle = 'white'
+    ctx.setLineDash([2, 4]);
 
     // Draw horizontal lines
     for (let i = 0; i <= _rows + 1; i++) {
@@ -66,6 +81,7 @@ const Zone = (_canvas, _columns = 5, _rows = 5, _margin = 60) => {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = "15px courier";
+    ctx.fillStyle = "white";
 
     // Draw X axis labels
     for (let i = 0; i <= _columns; i++) {

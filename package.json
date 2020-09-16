@@ -8,7 +8,9 @@
     "test": "jest --verbose",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && webpack --config webpack.config.js",
-    "watch": "webpack --config webpack.config.js --watch"
+    "test-build": "npm test && npm run build",
+    "watch": "webpack --config webpack.config.js --watch",
+    "watch-test": "nodemon --exec 'npx jest --verbose'"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "eslint-plugin-jest": "24.0.1",
     "file-loader": "6.1.0",
     "jest": "26.4.2",
+    "nodemon": "2.0.4",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12"
   },

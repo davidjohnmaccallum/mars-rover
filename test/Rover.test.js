@@ -1,40 +1,31 @@
 const Rover = require("../src/Rover");
 const Zone = require("../src/Zone");
 
+const mockCanvas = {
+  height: 600,
+  width: 600, 
+  textAlign: "",
+  textBaseline: "",
+  font: "",
+  getContext: () => ({
+    beginPath: () => {},
+    moveTo: () => {},
+    lineTo: () => {},
+    closePath: () => {},
+    stroke: () => {},
+    fillText: () => {},
+  })
+}
+
 test("Start position and orientation is correct.", () => {
-  const zone = Zone(12, 12, 600, 600);
+  const zone = Zone({...mockCanvas}, 12, 12, 60);
   const rover = Rover(zone, 0, 0, "E");
   expect(rover.getGridPositionX()).toBe(0);
   expect(rover.getGridPositionY()).toBe(0);
-  expect(rover.getOrientation()).toBe("E");
-});
-
-test("Rotation works.", () => {
-  const zone = Zone(12, 12, 600, 600);
-  const rover = Rover(zone, 0, 0, "E");
-  expect(rover.getOrientation()).toBe("E");
-
-  rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("N");
-  rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("W");
-  rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("S");
-  rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("E");
-
-  rover.rotateRight();
-  expect(rover.getOrientation()).toBe("S");
-  rover.rotateRight();
-  expect(rover.getOrientation()).toBe("W");
-  rover.rotateRight();
-  expect(rover.getOrientation()).toBe("N");
-  rover.rotateRight();
-  expect(rover.getOrientation()).toBe("E");
 });
 
 test("Position correct after move.", () => {
-  const zone = Zone(12, 12, 600, 600);
+  const zone = Zone({...mockCanvas}, 12, 12, 60);
   const rover = Rover(zone, 0, 0, "E");
 
   rover.move();
@@ -42,26 +33,23 @@ test("Position correct after move.", () => {
   expect(rover.getGridPositionY()).toBe(0);
 
   rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("N");
   rover.move();
   expect(rover.getGridPositionX()).toBe(1);
   expect(rover.getGridPositionY()).toBe(1);
 
   rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("W");
   rover.move();
   expect(rover.getGridPositionX()).toBe(0);
   expect(rover.getGridPositionY()).toBe(1);
 
   rover.rotateLeft();
-  expect(rover.getOrientation()).toBe("S");
   rover.move();
   expect(rover.getGridPositionX()).toBe(0);
   expect(rover.getGridPositionY()).toBe(0);
 });
 
 test("Rover cannot move out of bounds.", () => {
-  const zone = Zone(4, 4, 600, 600);
+  const zone = Zone({...mockCanvas}, 4, 4, 60);
 
   const rover1 = Rover(zone, 0, 0, "W");
   rover1.move();

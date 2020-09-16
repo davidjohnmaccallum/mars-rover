@@ -1,12 +1,18 @@
 require('./index.html')
-const _ = require("lodash")
+require('./mars.jpg')
+require('./rover.svg')
+const Zone = require('./Zone')
+const Rover = require('./Rover')
 
-function component() {
-  const element = document.createElement('div');
+const canvas = document.getElementById("grid")
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+const zone = Zone(canvas, 10, 10, 30)
+const rover = Rover(zone, 0, 0, "E")
+rover.move()
+rover.rotateLeft()
+rover.move()
+rover.rotateRight()
+rover.move()
+rover.move()
+zone.drawGrid()
+rover.drawRover()

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Zone grid coordinates converted to a physical location correctly 1`] = `
+Object {
+  "x": 60,
+  "y": 503.07692307692304,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 2`] = `
+Object {
+  "x": 96.92307692307692,
+  "y": 466.15384615384613,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 3`] = `
+Object {
+  "x": 503.07692307692304,
+  "y": 60,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 4`] = `
+Object {
+  "x": 170.76923076923077,
+  "y": 318.46153846153845,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 5`] = `
+Object {
+  "x": 60,
+  "y": 626.6666666666666,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 6`] = `
+Object {
+  "x": 94.54545454545455,
+  "y": 513.3333333333333,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly 7`] = `
+Object {
+  "x": 163.63636363636363,
+  "y": 60,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly. Error handling. 1`] = `
+Object {
+  "x": 60,
+  "y": 318.46153846153845,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly. Error handling. 2`] = `
+Object {
+  "x": 405.4545454545455,
+  "y": 60,
+}
+`;
+
+exports[`Zone grid coordinates converted to a physical location correctly. Error handling. 3`] = `
+Object {
+  "x": 60,
+  "y": 60,
+}
+`;

@@ -1,9 +1,24 @@
 <!doctype html>
 <html>
   <head>
-    <title>Getting Started</title>
+    <title>Mars Rover</title>
+    <style>
+      body {
+        background-color: orange;
+      }
+      #background {
+        display: inline-block;
+        height: "750px";
+        width: "750px";
+        background: url('mars.jpg') no-repeat;
+      }
+    </style>
   </head>
   <body>
+    <div id="background">
+      <canvas id="grid" height="600" width="600"></canvas>
+    </div>
+    <img id="rover" src="rover.svg" style="display:none"/>
     <script src="main.js"></script>
   </body>
 </html>

@@ -11,6 +11,7 @@
 1. Create zone grid. (DONE)
 1. Create rover sprite. (DONE)
 1. Move rover. (DONE)
+1. Handle input.
 1. Rotate rover.
 1. Animate move.
 1. Animate rotate.

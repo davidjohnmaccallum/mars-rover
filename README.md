@@ -1,5 +1,7 @@
 # Mars Rover
 
+![CI](https://github.com/davidjohnmaccallum/mars-rover/workflows/CI/badge.svg)
+
 ## TODO
 
 1. Setup dev, build and test tooling. (DONE)
